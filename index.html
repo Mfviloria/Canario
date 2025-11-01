@@ -153,89 +153,61 @@
       to {opacity: 1; transform: translateY(0);}
     }
 
-    /* ===== RESPONSIVO ===== */
-  @media (max-width: 768px) {
-    nav {
-      left: -250px; /* oculto por defecto */
-      width: 250px;
-      position: fixed;
-      height: 100vh;
-      transition: left 0.4s ease;
-      z-index: 20;
-    }
+  /* BOTÓN TOGGLE PARA MÓVIL */
+.menu-toggle {
+  display: none; /* por defecto oculto */
+}
 
-    nav.open {
-      left: 0; /* se muestra */
-    }
-
-    nav.closed {
-      left: -250px;
-    }
-
-    main {
-      margin-left: 0;
-      padding: 20px;
-    }
-
-    /* BOTÓN TOGGLE PARA MÓVIL */
+@media (max-width: 768px) {
   .menu-toggle {
-    display: none; /* por defecto oculto */
+    display: block;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 50;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    font-size: 1.6rem;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
   }
 
-  @media (max-width: 768px) {
-    .menu-toggle {
-      display: block;
-      position: fixed;
-      top: 15px;
-      left: 15px;
-      z-index: 50;
-      background: rgba(0,0,0,0.6);
-      color: white;
-      font-size: 1.6rem;
-      padding: 8px 12px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-
-    nav {
-      position: fixed;
-      top: 0;
-      left: -250px; /* oculto por defecto */
-      width: 250px;
-      height: 100vh;
-      transition: left 0.3s ease;
-      z-index: 40;
-    }
-
-    nav.open {
-      left: 0; /* cuando se abra */
-    }
-
-    main {
-      margin-left: 0;
-      padding: 20px;
-    }
+  nav {
+    position: fixed;
+    top: 0;
+    left: -250px; /* oculto por defecto */
+    width: 250px;
+    height: 100vh;
+    transition: left 0.3s ease;
+    z-index: 40;
   }
 
+  nav.open {
+    left: 0; /* cuando se abra */
+  }
 
+  main {
+    margin-left: 0;
+    padding: 20px;
+  }
+}
 
   </style>
 </head>
 <body>
-  <!-- BOTÓN PARA MÓVIL (SIEMPRE VISIBLE) -->
   <button class="menu-toggle" id="toggleMenu">≡</button>
 
   <!-- MENÚ -->
   <nav id="menu">
-    <h2>Canario Coronado</h2>
+    <h2>Canario</h2>
     <button class="menu-btn active" data-section="inicio"><i>🏠</i><span>Inicio</span></button>
     <button class="menu-btn" data-section="habitat"><i>🌳</i><span>Hábitat</span></button>
     <button class="menu-btn" data-section="alimentacion"><i>🌾</i><span>Alimentación</span></button>
     <button class="menu-btn" data-section="comportamiento"><i>🎶</i><span>Comportamiento</span></button>
     <button class="menu-btn" data-section="dismorfismo"><i>🪶</i><span>Dismorfismo</span></button>
   </nav>
-
   <main>
     <section id="inicio" class="active">
   <h1>El Canario Coronado</h1>
