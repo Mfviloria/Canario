@@ -331,13 +331,20 @@
 
     buttons.forEach(btn => {
       btn.addEventListener('click', () => {
+        // Cambiar sección activa
         buttons.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         sections.forEach(s => s.classList.remove('active'));
         document.getElementById(btn.dataset.section).classList.add('active');
-        if (window.innerWidth <= 768) nav.classList.remove('open');
+
+        // Si estamos en móvil, cerrar menú y actualizar ícono
+        if (window.innerWidth <= 768) {
+          nav.classList.remove('open');
+          toggleMenu.textContent = '≡'; // icono de menú cerrado
+        }
       });
     });
+
 
     toggleMenu.addEventListener('click', () => {
       if (window.innerWidth <= 768) {
