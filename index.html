@@ -9,7 +9,7 @@
 
 body {
   font-family: 'Poppins', sans-serif;
-  background-color: #fefaf5;
+  background-color: #faf7f0;
   color: #3b2f2f;
   margin: 0;
   overflow-x: hidden;
@@ -20,41 +20,23 @@ header {
   background: linear-gradient(135deg, #d4a373, #8b5e34);
   color: #fff;
   text-align: center;
-  padding: 70px 20px;
+  padding: 80px 20px;
   position: relative;
-  overflow: hidden;
-}
-
-header::after {
-  content: "";
-  position: absolute;
-  bottom: -20px;
-  left: 0;
-  width: 100%;
-  height: 50px;
-  background: #fefaf5;
-  border-radius: 50% 50% 0 0;
 }
 
 header h1 {
   font-size: 3em;
   margin: 0;
-  animation: aparecer 1.5s ease;
+  animation: fadeIn 1.5s ease;
 }
 
 header p {
   font-size: 1.2em;
-  margin-top: 10px;
   color: #fff9e6;
-  animation: aparecer 2s ease;
+  animation: fadeIn 2s ease;
 }
 
-@keyframes aparecer {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* MENÚ */
+/* NAVBAR */
 nav {
   background-color: #fefae0;
   display: flex;
@@ -85,13 +67,11 @@ nav {
   transform: scale(1.05);
 }
 
-/* HAMBURGUESA */
 .menu-toggle {
   display: none;
   flex-direction: column;
   cursor: pointer;
   gap: 5px;
-  z-index: 15;
 }
 
 .menu-toggle span {
@@ -102,114 +82,114 @@ nav {
   transition: all 0.3s ease;
 }
 
-/* CONTENEDOR */
-.contenedor {
-  max-width: 1100px;
-  margin: 40px auto;
-  padding: 20px;
-}
-
 /* SECCIONES */
 section {
-  background: #fff;
-  margin-bottom: 40px;
+  max-width: 1100px;
+  margin: 60px auto;
   padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  overflow: hidden;
   transition: transform 0.3s, box-shadow 0.3s;
-  opacity: 0;
-  transform: translateY(40px);
-  animation: fadeIn 1s forwards;
-}
-
-@keyframes fadeIn {
-  to { opacity: 1; transform: translateY(0); }
 }
 
 section:hover {
-  transform: scale(1.02);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
 }
 
-h2 { color: #8b5e34; margin-bottom: 15px; }
+section h2 {
+  color: #8b5e34;
+  margin-bottom: 15px;
+}
 
-p { font-size: 1.1em; line-height: 1.7; }
+section p, li {
+  font-size: 1.1em;
+  line-height: 1.8;
+}
 
 .info-img {
   text-align: center;
-  margin: 25px 0;
+  margin-top: 25px;
 }
 
 .info-img img {
-  width: 85%;
+  width: 100%;
   max-width: 500px;
   border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
   transition: transform 0.3s;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
 
 .info-img img:hover { transform: scale(1.05); }
 
+/* NUEVO ESTILO DE BLOQUES ALTERNADOS */
+.bloque {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 30px;
+}
+
+.bloque:nth-child(even) { flex-direction: row-reverse; }
+
+.bloque img {
+  flex: 1;
+  width: 100%;
+  border-radius: 15px;
+}
+
+.bloque div {
+  flex: 1;
+  min-width: 300px;
+}
+
+/* SECCIÓN INTERACTIVA */
 .interactivo {
-  text-align: center;
-  background-color: #fefae0;
+  background: linear-gradient(180deg, #fefae0, #d4a373);
   padding: 50px 20px;
+  text-align: center;
   border-radius: 20px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  color: #4a3b26;
 }
 
 .interactivo img {
   width: 400px;
   max-width: 90%;
-  cursor: pointer;
   border-radius: 10px;
+  cursor: pointer;
   transition: transform 0.3s, filter 0.3s;
 }
 
 .interactivo img:hover {
   transform: scale(1.05);
-  filter: drop-shadow(0 0 15px #d4a373);
+  filter: drop-shadow(0 0 10px #fff);
 }
 
 #datoMostrado {
-  background-color: #d4a373;
+  background-color: #8b5e34;
   color: #fff;
   padding: 20px;
   border-radius: 10px;
   margin-top: 25px;
   font-weight: bold;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-  animation: aparecer 0.8s ease;
 }
-
-ul { font-size: 1.05em; line-height: 1.8; }
-
-audio { display: block; margin: 20px auto; }
 
 /* FOOTER */
 footer {
   background-color: #8b5e34;
   color: #fefae0;
   text-align: center;
-  padding: 25px;
-  font-size: 0.95em;
-  letter-spacing: 0.5px;
+  padding: 30px;
+  font-size: 1em;
   border-top: 4px solid #d4a373;
 }
 
-footer span {
-  color: #fff;
-  font-weight: bold;
-}
-
-/* MEDIA QUERY CELULAR */
+/* RESPONSIVE */
 @media (max-width: 768px) {
   header h1 { font-size: 2.2em; }
-  section { padding: 20px; }
-
-  /* MENÚ MÓVIL */
+  .bloque { flex-direction: column; }
   .menu-toggle { display: flex; }
   .nav-list {
     position: fixed;
@@ -223,19 +203,14 @@ footer span {
     transition: max-height 0.5s ease, opacity 0.5s ease;
     opacity: 0;
   }
-  .nav-list li { text-align: center; margin: 15px 0; }
-  .nav-list li a {
-    font-size: 1.2em;
-    color: #fff;
-    display: block;
-    padding: 10px 0;
-  }
-  .nav-list li a:hover { transform: translateX(10px); color: #fffae6; }
   .nav-list.active { max-height: 500px; opacity: 1; }
+  .nav-list li { text-align: center; margin: 15px 0; }
+}
 
-  .menu-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
-  .menu-toggle.open span:nth-child(2) { opacity: 0; }
-  .menu-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(6px,-6px); }
+/* Animación */
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 1; transform: translateY(0);}
 }
 </style>
 </head>
@@ -247,9 +222,7 @@ footer span {
 </header>
 
 <nav>
-  <div class="menu-toggle" id="mobile-menu">
-    <span></span><span></span><span></span>
-  </div>
+  <div class="menu-toggle" id="mobile-menu"><span></span><span></span><span></span></div>
   <ul class="nav-list">
     <li><a href="#habitat">Hábitat</a></li>
     <li><a href="#alimentacion">Alimentación</a></li>
@@ -265,70 +238,68 @@ footer span {
 
 <div class="contenedor">
 
-  <!-- HABITAT -->
-  <section id="habitat">
-    <h2>🌾 Hábitat</h2>
-    <p>El canario coronado habita principalmente en los <b>bosques secos tropicales</b> de América del Sur, desde Colombia hasta Argentina...</p>
-    <div class="info-img"><img src="habitat.jpg" alt="Canario coronado en su hábitat"></div>
-  </section>
-
-  <!-- ALIMENTACION -->
-  <section id="alimentacion">
-    <h2>🌻 Alimentación</h2>
-    <p>Su dieta es principalmente <b>granívora</b>...</p>
-    <div class="info-img"><img src="comiendo.jpg" alt="Canario coronado alimentándose"></div>
-  </section>
-
-  <!-- ADAPTACIONES -->
-  <section id="adaptaciones">
-    <h2>🌞 Adaptaciones al hábitat</h2>
-    <p>El canario coronado posee un plumaje que refleja los tonos del sol...</p>
-    <div class="info-img"><img src="bird.jpg" alt="Adaptaciones del canario coronado"></div>
-  </section>
-
-  <!-- DISMORFISMO SEXUAL -->
-  <section id="dismorfismo">
-    <h2>💛 Dismorfismo Sexual</h2>
-    <p>El canario coronado presenta un marcado <b>dismorfismo sexual</b>, es decir, diferencias físicas evidentes entre el macho y la hembra:</p>
-    <ul>
-      <li><b>Macho:</b> posee un plumaje amarillo brillante con una corona anaranjada o dorada muy visible, especialmente bajo la luz solar.</li>
-      <li><b>Hembra:</b> presenta tonalidades más suaves, amarillentas o verdosas, lo que le permite camuflarse mejor entre la vegetación seca.</li>
-      <li>Durante la época de reproducción, los machos intensifican su color y su canto para atraer a las hembras.</li>
-    </ul>
-    <div class="info-img">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Sicalis_flaveola_male_female.jpg" alt="Macho y hembra de canario coronado">
+  <section id="habitat" class="bloque">
+    <img src="habitat.jpg" alt="Canario coronado en su hábitat">
+    <div>
+      <h2>🌾 Hábitat</h2>
+      <p>El canario coronado habita principalmente en los <b>bosques secos tropicales</b> de América del Sur, desde Colombia hasta Argentina...</p>
     </div>
   </section>
 
-  <!-- DEPREDADORES -->
-  <section id="depredadores">
-    <h2>🦅 Depredadores</h2>
-    <p>Entre sus principales enemigos naturales están los <b>halcones, serpientes y pequeños mamíferos</b>...</p>
-    <div class="info-img"><img src="https://upload.wikimedia.org/wikipedia/commons/e/ea/Falco_sparverius2.jpg" alt="Depredadores"></div>
+  <section id="alimentacion" class="bloque">
+    <img src="comiendo.jpg" alt="Canario coronado alimentándose">
+    <div>
+      <h2>🌻 Alimentación</h2>
+      <p>Su dieta es principalmente <b>granívora</b>...</p>
+    </div>
   </section>
 
-  <!-- CANTO -->
-  <section id="canto">
-    <h2>🎶 Canto</h2>
-    <p>Su canto es <b>melodioso, vibrante y alegre</b>...</p>
-    <audio controls><source src="Canto.mp3" type="audio/mpeg">Tu navegador no soporta el audio.</audio>
-    <div class="info-img"><img src="sing.jpg" alt="Canario cantando"></div>
+  <section id="adaptaciones" class="bloque">
+    <img src="bird.jpg" alt="Adaptaciones del canario coronado">
+    <div>
+      <h2>🌞 Adaptaciones al hábitat</h2>
+      <p>El canario coronado posee un plumaje que refleja los tonos del sol...</p>
+    </div>
   </section>
 
-  <!-- EXPLORA -->
+  <section id="dismorfismo" class="bloque">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f4/Sicalis_flaveola_male_and_female.jpg" alt="Macho y hembra de canario coronado">
+    <div>
+      <h2>🪶 Dismorfismo Sexual</h2>
+      <p>El canario coronado presenta un marcado <b>dismorfismo sexual</b>. Los <b>machos</b> exhiben un brillante color amarillo con una corona dorada intensa, mientras que las <b>hembras</b> tienen tonos más apagados, verde-oliva o amarillentos, lo que les ayuda a camuflarse en la vegetación seca.  
+      Este contraste no solo tiene fines estéticos, sino que cumple una función ecológica: el macho atrae pareja mediante su plumaje y canto, mientras que la hembra se protege mejor durante la incubación.</p>
+    </div>
+  </section>
+
+  <section id="depredadores" class="bloque">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/e/ea/Falco_sparverius2.jpg" alt="Depredadores">
+    <div>
+      <h2>🦅 Depredadores</h2>
+      <p>Entre sus principales enemigos naturales están los <b>halcones, serpientes y pequeños mamíferos</b>...</p>
+    </div>
+  </section>
+
+  <section id="canto" class="bloque">
+    <img src="sing.jpg" alt="Canario cantando">
+    <div>
+      <h2>🎶 Canto</h2>
+      <p>Su canto es <b>melodioso, vibrante y alegre</b>...</p>
+      <audio controls><source src="Canto.mp3" type="audio/mpeg">Tu navegador no soporta el audio.</audio>
+    </div>
+  </section>
+
   <section id="explora" class="interactivo">
     <h2>🕊️ Explora el Canario Coronado</h2>
     <p>Haz clic en las partes del canario para descubrir datos curiosos:</p>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/8/87/Sicalis_flaveola_-_Brazil_Side.jpg" alt="Canario coronado" usemap="#mapacanario">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/8/87/Sicalis_flaveola_-_Brazil_Side.jpg" usemap="#mapacanario">
     <map name="mapacanario">
-      <area shape="circle" coords="160,90,40" alt="Cabeza" onclick="mostrarDato('Su corona dorada refleja la luz del sol y le da su nombre característico.')">
-      <area shape="rect" coords="130,150,270,230" alt="Cuerpo" onclick="mostrarDato('Sus plumas le permiten soportar el calor y conservar la humedad corporal.')">
-      <area shape="circle" coords="250,320,30" alt="Patas" onclick="mostrarDato('Sus patas se adaptan a ramas finas, permitiéndole posarse con firmeza en arbustos secos.')">
+      <area shape="circle" coords="160,90,40" onclick="mostrarDato('Su corona dorada refleja la luz del sol y le da su nombre característico.')">
+      <area shape="rect" coords="130,150,270,230" onclick="mostrarDato('Sus plumas le permiten soportar el calor y conservar la humedad corporal.')">
+      <area shape="circle" coords="250,320,30" onclick="mostrarDato('Sus patas se adaptan a ramas finas, permitiéndole posarse con firmeza en arbustos secos.')">
     </map>
     <div id="datoMostrado">✨ Haz clic en una parte del canario para descubrir un dato curioso ✨</div>
   </section>
 
-  <!-- CURIOSIDADES -->
   <section id="curiosidades">
     <h2>🌿 Datos Curiosos</h2>
     <ul>
@@ -340,13 +311,13 @@ footer span {
     </ul>
   </section>
 
-  <!-- CONSERVACION -->
-  <section id="conservacion">
-    <h2>🌎 Conservación y Amenazas</h2>
-    <p>Aunque el canario coronado no se considera en peligro...</p>
-    <div class="info-img"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Bosque_seco_tropical_Colombia.jpg" alt="Bosque seco tropical colombiano"></div>
+  <section id="conservacion" class="bloque">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Bosque_seco_tropical_Colombia.jpg">
+    <div>
+      <h2>🌎 Conservación y Amenazas</h2>
+      <p>Aunque el canario coronado no se considera en peligro...</p>
+    </div>
   </section>
-
 </div>
 
 <footer>
@@ -358,18 +329,15 @@ function mostrarDato(texto){
   const dato = document.getElementById('datoMostrado');
   dato.innerText = texto;
   dato.style.animation = 'none';
-  setTimeout(() => dato.style.animation = 'aparecer 0.8s ease', 10);
+  setTimeout(() => dato.style.animation = 'fadeIn 0.8s ease', 10);
 }
 
-/* MENU MÓVIL */
 const mobileMenu = document.getElementById('mobile-menu');
 const navList = document.querySelector('.nav-list');
-
 mobileMenu.addEventListener('click', () => {
   navList.classList.toggle('active');
   mobileMenu.classList.toggle('open');
 });
 </script>
-
 </body>
 </html>
