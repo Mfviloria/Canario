@@ -156,11 +156,14 @@
     /* ===== RESPONSIVO ===== */
     @media (max-width: 768px) {
       nav {
-        left: -250px;
+        left: -250px; /* oculto por defecto */
+        width: 250px;
+        position: fixed;
+        height: 100vh;
       }
 
       nav.open {
-        left: 0;
+        left: 0; /* se muestra */
       }
 
       nav.closed {
@@ -168,10 +171,15 @@
       }
 
       main {
-        margin-left: 0;
+        margin-left: 0; /* se ajusta contenido */
         padding: 20px;
       }
+
+      .menu-toggle {
+        display: block;
+      }
     }
+
   </style>
 </head>
 <body>
@@ -319,10 +327,10 @@
 
     toggleMenu.addEventListener('click', () => {
       if (window.innerWidth <= 768) {
-        nav.classList.toggle('open');
+        nav.classList.toggle('open'); // abrir/cerrar menú en móvil
         toggleMenu.textContent = nav.classList.contains('open') ? '×' : '≡';
       } else {
-        nav.classList.toggle('closed');
+        nav.classList.toggle('closed'); // toggle escritorio
         menuOpen = !menuOpen;
         toggleMenu.textContent = menuOpen ? '×' : '≡';
       }
