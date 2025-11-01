@@ -19,7 +19,7 @@
     /* ===== MENÚ LATERAL ===== */
     nav {
       width: 250px;
-      background: linear-gradient(180deg, #a17c50, #d1b17a);
+      background: linear-gradient(180deg, #a67b5b, #d4b483);
       color: white;
       display: flex;
       flex-direction: column;
@@ -28,12 +28,30 @@
       box-shadow: 4px 0 10px rgba(0,0,0,0.15);
       position: fixed;
       height: 100vh;
-      transition: all 0.4s ease;
+      transition: width 0.4s ease;
       z-index: 10;
     }
 
     nav.closed {
       width: 70px;
+    }
+
+    /* ===== BOTÓN DENTRO DEL MENÚ ===== */
+    .menu-toggle {
+      align-self: flex-end;
+      background: rgba(255,255,255,0.2);
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      padding: 8px 12px;
+      margin: 5px 15px 20px 0;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .menu-toggle:hover {
+      background: rgba(255,255,255,0.3);
     }
 
     nav h2 {
@@ -68,31 +86,10 @@
     .menu-btn i {
       font-style: normal;
       font-size: 1.3rem;
-      transition: margin-left 0.3s ease;
     }
 
     nav.closed .menu-btn span {
       display: none;
-    }
-
-    /* ===== BOTÓN DE MENÚ ===== */
-    .toggle-menu {
-      position: fixed;
-      top: 20px;
-      left: 260px;
-      background: #8b6f47;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      padding: 10px 15px;
-      font-size: 1.2rem;
-      cursor: pointer;
-      z-index: 11;
-      transition: left 0.4s ease;
-    }
-
-    nav.closed ~ .toggle-menu {
-      left: 80px;
     }
 
     /* ===== CONTENIDO ===== */
@@ -114,7 +111,7 @@
       display: none;
       max-width: 900px;
       text-align: justify;
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.95);
       padding: 30px;
       border-radius: 15px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
@@ -146,8 +143,8 @@
         left: 0;
       }
 
-      .toggle-menu {
-        left: 15px !important;
+      nav.closed {
+        left: -250px;
       }
 
       main {
@@ -160,6 +157,7 @@
 <body>
 
   <nav id="menu">
+    <button class="menu-toggle" id="toggleMenu">☰</button>
     <h2>Canario</h2>
     <button class="menu-btn active" data-section="inicio"><i>🏠</i><span>Inicio</span></button>
     <button class="menu-btn" data-section="habitat"><i>🌳</i><span>Hábitat</span></button>
@@ -167,8 +165,6 @@
     <button class="menu-btn" data-section="comportamiento"><i>🎶</i><span>Comportamiento</span></button>
     <button class="menu-btn" data-section="dismorfismo"><i>🪶</i><span>Dismorfismo</span></button>
   </nav>
-
-  <button class="toggle-menu">☰</button>
 
   <main>
     <section id="inicio" class="active">
@@ -226,7 +222,7 @@
     const buttons = document.querySelectorAll('.menu-btn');
     const sections = document.querySelectorAll('section');
     const nav = document.getElementById('menu');
-    const toggleBtn = document.querySelector('.toggle-menu');
+    const toggleMenu = document.getElementById('toggleMenu');
 
     buttons.forEach(btn => {
       btn.addEventListener('click', () => {
@@ -238,7 +234,7 @@
       });
     });
 
-    toggleBtn.addEventListener('click', () => {
+    toggleMenu.addEventListener('click', () => {
       if (window.innerWidth <= 768) {
         nav.classList.toggle('open');
       } else {
