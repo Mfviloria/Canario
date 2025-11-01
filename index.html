@@ -37,61 +37,56 @@
     }
 
     /* ===== BOTÓN DENTRO DEL MENÚ ===== */
+    /* Botón toggle */
+  .menu-toggle {
+    display: none; /* por defecto */
+  }
+
+  @media (max-width: 768px) {
     .menu-toggle {
-      align-self: flex-end;
-      background: rgba(255,255,255,0.2);
-      border: none;
+      display: block;
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      z-index: 50;
+      background: rgba(0,0,0,0.6);
       color: white;
       font-size: 1.6rem;
       padding: 8px 12px;
-      margin: 5px 15px 20px 0;
+      border: none;
       border-radius: 8px;
       cursor: pointer;
-      transition: background 0.3s ease, transform 0.2s;
     }
 
-    .menu-toggle:hover {
-      background: rgba(255,255,255,0.3);
-      transform: scale(1.1);
+    nav {
+      position: fixed;
+      top: 0;
+      left: -250px; /* oculto */
+      width: 250px;
+      height: 100vh;
+      z-index: 40;
+      transition: left 0.3s ease;
     }
 
-    nav h2 {
-      text-align: center;
-      font-size: 1.4rem;
-      margin-bottom: 1.5rem;
-      transition: opacity 0.3s ease;
+    nav.open {
+      left: 0;
     }
 
-    nav.closed h2 {
-      opacity: 0;
+    main {
+      margin-left: 0;
+      padding: 20px;
     }
+  }
 
-    .menu-btn {
-      padding: 15px 20px;
-      border: none;
-      background: none;
-      color: white;
-      text-align: left;
-      font-size: 1rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      transition: all 0.3s ease;
+  /* Desktop */
+  @media (min-width: 769px) {
+    main {
+      margin-left: 250px;
     }
-
-    .menu-btn:hover, .menu-btn.active {
-      background: rgba(255,255,255,0.2);
+    nav.closed {
+      width: 70px;
     }
-
-    .menu-btn i {
-      font-style: normal;
-      font-size: 1.3rem;
-    }
-
-    nav.closed .menu-btn span {
-      display: none;
-    }
+  }
 
     /* ===== CONTENIDO ===== */
     main {
