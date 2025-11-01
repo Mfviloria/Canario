@@ -154,31 +154,38 @@
     }
 
     /* ===== RESPONSIVO ===== */
-    @media (max-width: 768px) {
-      nav {
-        left: -250px; /* oculto por defecto */
-        width: 250px;
-        position: fixed;
-        height: 100vh;
-      }
-
-      nav.open {
-        left: 0; /* se muestra */
-      }
-
-      nav.closed {
-        left: -250px;
-      }
-
-      main {
-        margin-left: 0; /* se ajusta contenido */
-        padding: 20px;
-      }
-
-      .menu-toggle {
-        display: block;
-      }
+  @media (max-width: 768px) {
+    nav {
+      left: -250px; /* oculto por defecto */
+      width: 250px;
+      position: fixed;
+      height: 100vh;
+      transition: left 0.4s ease;
+      z-index: 20;
     }
+
+    nav.open {
+      left: 0; /* se muestra */
+    }
+
+    nav.closed {
+      left: -250px;
+    }
+
+    main {
+      margin-left: 0;
+      padding: 20px;
+    }
+
+    .menu-toggle {
+      display: block;
+      position: fixed; /* fijamos en la pantalla */
+      top: 15px;
+      left: 15px;
+      z-index: 30;
+    }
+  }
+
 
   </style>
 </head>
@@ -335,6 +342,7 @@
         toggleMenu.textContent = menuOpen ? '×' : '≡';
       }
     });
+
   </script>
 
 </body>
