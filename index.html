@@ -330,20 +330,31 @@
         btn.classList.add('active');
         sections.forEach(s => s.classList.remove('active'));
         document.getElementById(btn.dataset.section).classList.add('active');
-        if (window.innerWidth <= 768) nav.classList.remove('open');
+        if (window.innerWidth <= 768) nav.classList.remove('open'); // cerrar menú móvil al seleccionar
       });
     });
 
     toggleMenu.addEventListener('click', () => {
       if (window.innerWidth <= 768) {
-        nav.classList.toggle('open'); // abrir/cerrar menú en móvil
+        // móvil
+        nav.classList.toggle('open');
         toggleMenu.textContent = nav.classList.contains('open') ? '×' : '≡';
       } else {
-        nav.classList.toggle('closed'); // toggle escritorio
+        // escritorio
+        nav.classList.toggle('closed');
         menuOpen = !menuOpen;
-        toggleMenu.textContent = menuOpen ? '×' : '≡';
+        toggleMenu.textContent = menuOpen ? '≡' : '×';
       }
     });
+
+    // Opcional: reiniciar estado cuando se redimensiona la ventana
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) {
+        nav.classList.remove('open');
+        toggleMenu.textContent = menuOpen ? '≡' : '×';
+      }
+    });
+
 
   </script>
 
