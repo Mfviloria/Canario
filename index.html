@@ -37,56 +37,61 @@
     }
 
     /* ===== BOTÓN DENTRO DEL MENÚ ===== */
-    /* Botón toggle */
-  .menu-toggle {
-    display: none; /* por defecto */
-  }
-
-  @media (max-width: 768px) {
     .menu-toggle {
-      display: block;
-      position: fixed;
-      top: 15px;
-      left: 15px;
-      z-index: 50;
-      background: rgba(0,0,0,0.6);
+      align-self: flex-end;
+      background: rgba(255,255,255,0.2);
+      border: none;
       color: white;
       font-size: 1.6rem;
       padding: 8px 12px;
-      border: none;
+      margin: 5px 15px 20px 0;
       border-radius: 8px;
       cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s;
     }
 
-    nav {
-      position: fixed;
-      top: 0;
-      left: -250px; /* oculto */
-      width: 250px;
-      height: 100vh;
-      z-index: 40;
-      transition: left 0.3s ease;
+    .menu-toggle:hover {
+      background: rgba(255,255,255,0.3);
+      transform: scale(1.1);
     }
 
-    nav.open {
-      left: 0;
+    nav h2 {
+      text-align: center;
+      font-size: 1.4rem;
+      margin-bottom: 1.5rem;
+      transition: opacity 0.3s ease;
     }
 
-    main {
-      margin-left: 0;
-      padding: 20px;
+    nav.closed h2 {
+      opacity: 0;
     }
-  }
 
-  /* Desktop */
-  @media (min-width: 769px) {
-    main {
-      margin-left: 250px;
+    .menu-btn {
+      padding: 15px 20px;
+      border: none;
+      background: none;
+      color: white;
+      text-align: left;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: all 0.3s ease;
     }
-    nav.closed {
-      width: 70px;
+
+    .menu-btn:hover, .menu-btn.active {
+      background: rgba(255,255,255,0.2);
     }
-  }
+
+    .menu-btn i {
+      font-style: normal;
+      font-size: 1.3rem;
+    }
+
+    nav.closed .menu-btn span {
+      display: none;
+    }
 
     /* ===== CONTENIDO ===== */
     main {
@@ -330,31 +335,20 @@
         btn.classList.add('active');
         sections.forEach(s => s.classList.remove('active'));
         document.getElementById(btn.dataset.section).classList.add('active');
-        if (window.innerWidth <= 768) nav.classList.remove('open'); // cerrar menú móvil al seleccionar
+        if (window.innerWidth <= 768) nav.classList.remove('open');
       });
     });
 
     toggleMenu.addEventListener('click', () => {
       if (window.innerWidth <= 768) {
-        // móvil
-        nav.classList.toggle('open');
+        nav.classList.toggle('open'); // abrir/cerrar menú en móvil
         toggleMenu.textContent = nav.classList.contains('open') ? '×' : '≡';
       } else {
-        // escritorio
-        nav.classList.toggle('closed');
+        nav.classList.toggle('closed'); // toggle escritorio
         menuOpen = !menuOpen;
-        toggleMenu.textContent = menuOpen ? '≡' : '×';
+        toggleMenu.textContent = menuOpen ? '×' : '≡';
       }
     });
-
-    // Opcional: reiniciar estado cuando se redimensiona la ventana
-    window.addEventListener('resize', () => {
-      if (window.innerWidth > 768) {
-        nav.classList.remove('open');
-        toggleMenu.textContent = menuOpen ? '≡' : '×';
-      }
-    });
-
 
   </script>
 
