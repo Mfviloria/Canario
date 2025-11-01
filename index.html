@@ -1,220 +1,325 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <title>Mapa tipo inDrive - Voronoi con tiempos dinámicos</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="https://unpkg.com/d3@7"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>El Canario Coronado - Infografía</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    html, body, #map { 
-      height: 100%; 
-      margin: 0; 
-      background: #0a0a0a; 
-      touch-action: pan-y;
+    body {
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      background: #fffaf0;
+      color: #3e2f1c;
+      overflow-x: hidden;
     }
 
-    #info {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      right: 10px; /* para móviles */
-      background: rgba(0,0,0,0.7);
-      color: white;
-      padding: 10px 15px;
-      border-radius: 10px;
-      font-family: "Poppins", sans-serif;
-      box-shadow: 0 0 10px rgba(0,0,0,0.5);
-      z-index: 1000;
-      font-size: 14px;
+    a { text-decoration: none; color: inherit; }
+
+    /* HEADER */
+    header {
+      background: linear-gradient(135deg, #f7b733, #fc4a1a);
+      color: #fff;
+      text-align: center;
+      padding: 100px 20px 60px 20px;
+      clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+      position: relative;
     }
 
-    .driver {
-      fill: #00aaff;
-      stroke: white;
-      stroke-width: 1;
-      transition: all 0.4s ease-in-out;
+    header h1 {
+      font-size: 3em;
+      margin: 0;
+      animation: slideDown 1.5s ease;
     }
 
-    .driver.near {
-      fill: #00ffcc;
-      r: 10;
-      filter: drop-shadow(0 0 12px #00ffcc);
+    header p {
+      font-size: 1.2em;
+      margin-top: 10px;
+      font-style: italic;
+      color: #fffdd0;
+      animation: fadeIn 2s ease;
     }
 
-    .driver.mid {
-      fill: #ffaa00;
-      r: 8;
-      filter: drop-shadow(0 0 6px #ffaa00);
+    @keyframes slideDown {
+      from { transform: translateY(-50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
     }
 
-    .voronoi {
-      fill: none;
-      stroke: rgba(255,255,255,0.1);
-      stroke-width: 1;
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
-    .user {
-      fill: limegreen;
-      stroke: white;
-      stroke-width: 2;
-      r: 10;
-      filter: drop-shadow(0 0 10px limegreen);
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      background-color: #a3571e;
+      padding: 10px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    nav a {
+      color: #fff3e0;
+      margin: 5px 12px;
+      padding: 8px 15px;
+      border-radius: 12px;
+      font-weight: bold;
+      transition: all 0.3s;
+    }
+
+    nav a:hover {
+      background-color: #fff3e0;
+      color: #a3571e;
+      transform: scale(1.1);
+    }
+
+    /* CONTENEDOR GENERAL */
+    .contenedor {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+    }
+
+    /* SECCIONES ESTILO CARD */
+    section {
+      background-color: #fff3e0;
+      border-radius: 25px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+      padding: 30px 20px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    section:hover {
+      transform: translateY(-7px) scale(1.02);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+      font-size: 1.8em;
+      color: #d97f2c;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    h2::after {
+      content: '';
+      width: 50px;
+      height: 3px;
+      background: #a3571e;
+      display: block;
+      margin: 8px auto 0 auto;
+      border-radius: 2px;
+    }
+
+    p {
+      font-size: 1.1em;
+      line-height: 1.6;
+      margin: 15px 0;
+    }
+
+    ul {
+      text-align: left;
+      padding-left: 20px;
+      font-size: 1em;
+      line-height: 1.6;
+    }
+
+    .info-img img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 20px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+      margin-top: 15px;
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+
+    .info-img img:hover { transform: scale(1.05); }
+
+    /* INTERACTIVO */
+    .interactivo {
+      background: linear-gradient(135deg, #ffe6c7, #ffd27f);
+      border-radius: 25px;
+      padding: 40px 20px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+
+    .interactivo img {
+      width: 350px;
+      max-width: 90%;
+      cursor: pointer;
+      border-radius: 15px;
+      transition: transform 0.3s, filter 0.3s;
+    }
+
+    .interactivo img:hover {
+      transform: scale(1.05);
+      filter: drop-shadow(0 0 20px #d97f2c);
+    }
+
+    #datoMostrado {
+      margin-top: 20px;
+      padding: 20px;
+      background-color: #d97f2c;
+      color: #fff;
+      border-radius: 15px;
+      font-weight: bold;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
       animation: pulse 1.5s infinite;
     }
 
-    .time-label {
-      fill: white;
-      font-size: 12px;
-      font-family: "Poppins", sans-serif;
-      text-anchor: middle;
-      pointer-events: none;
-    }
-
     @keyframes pulse {
-      0% { r: 10; opacity: 1; }
-      50% { r: 14; opacity: 0.7; }
-      100% { r: 10; opacity: 1; }
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
     }
 
-    /* Ajustes responsive */
-    @media (max-width: 600px) {
-      #info {
-        font-size: 12px;
-        padding: 8px 10px;
-      }
-      .driver.near { r: 8; }
-      .driver.mid { r: 6; }
-      .user { r: 8; }
-      .time-label { font-size: 10px; }
+    audio {
+      margin: 20px auto;
+      display: block;
+    }
+
+    /* FOOTER */
+    footer {
+      background-color: #a3571e;
+      color: #fff3e0;
+      text-align: center;
+      padding: 25px;
+      font-size: 0.95em;
+      letter-spacing: 0.5px;
+      border-top: 4px solid #d97f2c;
+    }
+
+    footer span { font-weight: bold; }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      header h1 { font-size: 2.2em; }
+      section { padding: 20px 15px; }
+      .interactivo img { width: 90%; }
     }
   </style>
 </head>
 <body>
-  <div id="info">
-    <h3>🚕 Encuentra tu conductor más cercano</h3>
-    <p>Haz clic en el mapa para marcar tu ubicación. Solo los cercanos muestran tiempo estimado.</p>
+
+  <header>
+    <h1>El Canario Coronado</h1>
+    <p><i>(Sicalis flaveola)</i> — Un tesoro dorado del bosque seco tropical</p>
+  </header>
+
+  <nav>
+    <a href="#habitat">Hábitat</a>
+    <a href="#alimentacion">Alimentación</a>
+    <a href="#adaptaciones">Adaptaciones</a>
+    <a href="#depredadores">Depredadores</a>
+    <a href="#canto">Canto</a>
+    <a href="#explora">Explora</a>
+    <a href="#curiosidades">Curiosidades</a>
+    <a href="#conservacion">Conservación</a>
+  </nav>
+
+  <div class="contenedor">
+
+    <section id="habitat">
+      <h2>🌾 Hábitat</h2>
+      <p>El canario coronado habita principalmente en los <b>bosques secos tropicales</b> de América del Sur, desde Colombia hasta Argentina. Le encantan las zonas abiertas, con vegetación baja, ramas secas y árboles dispersos que le permitan observar su entorno y cantar.</p>
+      <p>También se adapta fácilmente a áreas urbanas y rurales, como parques o zonas agrícolas.</p>
+      <div class="info-img"><img src="habitat.jpg" alt="Canario coronado en su hábitat"></div>
+    </section>
+
+    <section id="alimentacion">
+      <h2>🌻 Alimentación</h2>
+      <p>Su dieta es principalmente <b>granívora</b>, compuesta por semillas de pastos y plantas silvestres. También consume insectos y pequeños frutos, especialmente durante la temporada de cría.</p>
+      <p>Su pico fuerte y corto le permite romper semillas duras, lo que le da ventaja sobre otras aves menos adaptadas.</p>
+      <div class="info-img"><img src="comiendo.jpg" alt="Canario coronado alimentándose"></div>
+    </section>
+
+    <section id="adaptaciones">
+      <h2>🌞 Adaptaciones</h2>
+      <p>Su plumaje refleja los tonos del sol y la vegetación seca, ayudándolo a camuflarse. Sus alas cortas le permiten vuelos ágiles entre ramas y arbustos.</p>
+      <p>También puede sobrevivir largos periodos con poca agua, obteniendo humedad de los alimentos.</p>
+      <div class="info-img"><img src="bird.jpg" alt="Adaptaciones del canario coronado"></div>
+    </section>
+
+    <section id="depredadores">
+      <h2>🦅 Depredadores</h2>
+      <p>Sus principales enemigos naturales son <b>halcones, serpientes y pequeños mamíferos</b>. Forma pequeñas bandadas y emite alertas cuando detecta peligro.</p>
+      <div class="info-img">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/ea/Falco_sparverius2.jpg" alt="Depredadores del canario coronado">
+      </div>
+    </section>
+
+    <section id="canto">
+      <h2>🎶 Canto</h2>
+      <p>Su canto es <b>melodioso, vibrante y alegre</b>, usado para atraer pareja y marcar territorio. Varía entre individuos, lo que ayuda a reconocer a cada canario.</p>
+      <audio controls>
+        <source src="Canto.mp3" type="audio/mpeg">
+        Tu navegador no soporta el audio.
+      </audio>
+      <div class="info-img"><img src="sing.jpg" alt="Canario cantando"></div>
+    </section>
+
+    <section id="explora" class="interactivo">
+      <h2>🕊️ Explora el Canario</h2>
+      <p>Haz clic en las partes del canario para descubrir datos curiosos:</p>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/87/Sicalis_flaveola_-_Brazil_Side.jpg" usemap="#mapacanario">
+      <map name="mapacanario">
+        <area shape="circle" coords="160,90,40" alt="Cabeza" onclick="mostrarDato('Su corona dorada refleja la luz del sol y le da su nombre característico.')">
+        <area shape="rect" coords="130,150,270,230" alt="Cuerpo" onclick="mostrarDato('Sus plumas le permiten soportar el calor y conservar la humedad corporal.')">
+        <area shape="circle" coords="250,320,30" alt="Patas" onclick="mostrarDato('Sus patas se adaptan a ramas finas, permitiéndole posarse con firmeza en arbustos secos.')">
+      </map>
+      <div id="datoMostrado">✨ Haz clic en una parte del canario para descubrir un dato curioso ✨</div>
+    </section>
+
+    <section id="curiosidades">
+      <h2>🌿 Datos Curiosos</h2>
+      <ul>
+        <li>El macho canta más intensamente en época de apareamiento.</li>
+        <li>Su color amarillo proviene de carotenoides de su alimentación.</li>
+        <li>Construye nidos con pasto seco, plumas y pelos.</li>
+        <li>Se asocia con buena suerte y prosperidad.</li>
+        <li>Pueden vivir entre 8 y 10 años en libertad.</li>
+      </ul>
+    </section>
+
+    <section id="conservacion">
+      <h2>🌎 Conservación</h2>
+      <p>Aunque no está en peligro, <b>la pérdida del bosque seco tropical</b> afecta su hábitat. La expansión agrícola y urbanización reduce los espacios para alimentarse y anidar.</p>
+      <p>Promover la <b>reforestación con especies nativas</b> y proteger las zonas secas naturales es fundamental.</p>
+      <div class="info-img">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Bosque_seco_tropical_Colombia.jpg" alt="Bosque seco tropical colombiano">
+      </div>
+    </section>
+
   </div>
-  <div id="map"></div>
+
+  <footer>
+    © 2025 <span>Aventuras del Bosque Seco</span> 🌻 | Diseñado por Mafe Viloria
+  </footer>
 
   <script>
-    const map = L.map('map').setView([10.9878, -74.7889], 13);
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-      maxZoom: 19,
-      attribution: '© OpenStreetMap · Diseño Mafe'
-    }).addTo(map);
-
-    const svgLayer = L.svg();
-    svgLayer.addTo(map);
-    const svg = d3.select("#map").select("svg");
-    const g = svg.append("g");
-
-    // Generar conductores
-    let drivers = d3.range(180).map((i) => [
-      10.88 + Math.random() * 0.18,
-      -74.90 + Math.random() * 0.18,
-      `Conductor #${i + 1}`,
-      Math.random() * 2 * Math.PI // ángulo de movimiento aleatorio
-    ]);
-
-    let userPoint = null;
-
-    function projectPoint(lat, lon) {
-      return map.latLngToLayerPoint([lat, lon]);
+    function mostrarDato(texto) {
+      const dato = document.getElementById('datoMostrado');
+      dato.innerText = texto;
+      dato.style.animation = 'none';
+      setTimeout(() => dato.style.animation = 'pulse 1.5s infinite', 10);
     }
-
-    function drawVoronoi() {
-      g.selectAll("*").remove();
-      const points = drivers.map(d => projectPoint(d[0], d[1]));
-      const xs = points.map(p => p.x);
-      const ys = points.map(p => p.y);
-      const padding = 50;
-      const minX = Math.min(...xs) - padding;
-      const maxX = Math.max(...xs) + padding;
-      const minY = Math.min(...ys) - padding;
-      const maxY = Math.max(...ys) + padding;
-
-      const voronoi = d3.Delaunay.from(points.map(p => [p.x, p.y]))
-                         .voronoi([minX, minY, maxX, maxY]);
-
-      g.selectAll(".cell")
-        .data(drivers)
-        .enter()
-        .append("path")
-        .attr("class", "voronoi")
-        .attr("d", (d, i) => voronoi.renderCell(i));
-
-      g.selectAll(".driver")
-        .data(drivers)
-        .enter()
-        .append("circle")
-        .attr("class", "driver")
-        .attr("r", 5)
-        .attr("cx", d => projectPoint(d[0], d[1]).x)
-        .attr("cy", d => projectPoint(d[0], d[1]).y);
-
-      if (userPoint) {
-        const user = projectPoint(userPoint[0], userPoint[1]);
-        drivers.forEach((d) => {
-          const p = projectPoint(d[0], d[1]);
-          const distance = Math.hypot(p.x - user.x, p.y - user.y);
-          if (distance < 150 || distance < 300) { // near o mid
-            const eta = Math.round(distance / 50);
-            g.append("text")
-              .attr("class", "time-label")
-              .attr("x", p.x)
-              .attr("y", p.y - 12)
-              .text(`${eta} min`);
-          }
-        });
-        g.append("circle")
-          .attr("class", "user")
-          .attr("cx", user.x)
-          .attr("cy", user.y)
-          .attr("r", 10);
-      }
-    }
-
-    function animateDrivers() {
-      drivers.forEach(d => {
-        const speed = 0.001;
-        d[0] += Math.cos(d[3]) * speed;
-        d[1] += Math.sin(d[3]) * speed;
-
-        // rebote dentro del área aproximada
-        if (d[0] < 10.88 || d[0] > 11.06) d[3] = Math.PI - d[3];
-        if (d[1] < -74.90 || d[1] > -74.72) d[3] = -d[3];
-      });
-      drawVoronoi();
-      updateProximity();
-    }
-
-    function updateProximity() {
-      if (!userPoint) return;
-      const user = projectPoint(userPoint[0], userPoint[1]);
-      const distances = drivers.map(d => {
-        const p = projectPoint(d[0], d[1]);
-        return Math.hypot(p.x - user.x, p.y - user.y);
-      });
-      const maxDist = d3.max(distances);
-      g.selectAll(".driver")
-        .attr("class", (d, i) => {
-          if (distances[i] < maxDist * 0.12) return "driver near";
-          if (distances[i] < maxDist * 0.30) return "driver mid";
-          return "driver";
-        });
-    }
-
-    map.on("click", function(e) {
-      userPoint = [e.latlng.lat, e.latlng.lng];
-      drawVoronoi();
-      updateProximity();
-    });
-
-    map.on("zoom move", drawVoronoi);
-    drawVoronoi();
-    setInterval(animateDrivers, 800);
   </script>
+
 </body>
 </html>
