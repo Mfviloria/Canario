@@ -1,60 +1,83 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>El Canario Coronado</title>
   <style>
+    /* ---------- ESTILOS GENERALES ---------- */
     body {
       font-family: 'Poppins', sans-serif;
       margin: 0;
-      background-color: #f8f3ec;
-      color: #3a2c1f;
+      background: linear-gradient(180deg, #f4f0e6 0%, #faf7f1 100%);
+      color: #3c2e1f;
+      overflow-x: hidden;
     }
 
     header {
-      background: linear-gradient(90deg, #a66f33, #d9b77c);
+      background: linear-gradient(90deg, #9c6b2c, #c69b56, #e8c78c);
       color: white;
-      padding: 20px;
+      padding: 30px 15px;
       text-align: center;
-      font-size: 1.6em;
+      font-size: 1.8em;
       font-weight: bold;
+      letter-spacing: 1px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
+    /* ---------- MENÚ ---------- */
     nav {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      background-color: #c29f68;
-      padding: 10px;
+      gap: 10px;
+      background-color: #d2b48c;
+      padding: 10px 0;
+      position: sticky;
+      top: 80px;
+      z-index: 900;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     }
 
     nav button {
-      background-color: #f1e2c3;
+      background-color: #fffaf2;
       border: none;
-      margin: 5px;
-      padding: 10px 15px;
-      border-radius: 20px;
+      border-radius: 25px;
+      padding: 10px 20px;
       cursor: pointer;
-      font-weight: bold;
-      color: #4b3b27;
-      transition: 0.3s;
+      color: #5a3b1a;
+      font-weight: 600;
+      font-size: 0.95em;
+      transition: all 0.3s ease;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
     }
 
     nav button:hover {
-      background-color: #a66f33;
+      background-color: #b97b2e;
       color: white;
-      transform: scale(1.05);
+      transform: scale(1.08);
     }
 
+    /* ---------- CONTENIDO PRINCIPAL ---------- */
     main {
-      padding: 20px;
+      padding: 25px;
       animation: fadeIn 0.6s ease-in-out;
+      max-width: 900px;
+      margin: auto;
     }
 
     section {
       display: none;
       animation: fadeIn 0.6s ease-in-out;
+      background: #ffffffc9;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      margin-bottom: 25px;
+      backdrop-filter: blur(5px);
     }
 
     section.active {
@@ -62,46 +85,69 @@
     }
 
     h2 {
-      border-bottom: 2px solid #a66f33;
-      display: inline-block;
-      padding-bottom: 5px;
-      color: #5a3b1a;
+      border-left: 6px solid #b97b2e;
+      padding-left: 12px;
+      color: #654321;
+      font-size: 1.5em;
+      margin-top: 0;
+    }
+
+    p, ul {
+      line-height: 1.7;
+      font-size: 1em;
+    }
+
+    ul {
+      margin-left: 20px;
     }
 
     img {
       width: 100%;
       max-width: 450px;
       display: block;
-      margin: 15px auto;
-      border-radius: 15px;
-      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+      margin: 20px auto;
+      border-radius: 18px;
+      box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.25);
+      transition: transform 0.3s ease;
+    }
+
+    img:hover {
+      transform: scale(1.05);
     }
 
     audio {
       display: block;
       margin: 15px auto;
+      border-radius: 20px;
     }
 
+    /* ---------- EFECTOS ---------- */
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* 📱 Responsivo */
+    /* ---------- RESPONSIVO ---------- */
     @media (max-width: 768px) {
       header {
-        font-size: 1.2em;
+        font-size: 1.3em;
+        padding: 20px 10px;
       }
 
       nav {
         flex-direction: column;
-        align-items: center;
+        padding: 8px;
+        top: 70px;
       }
 
       nav button {
-        width: 80%;
+        width: 90%;
         font-size: 0.9em;
         padding: 8px;
+      }
+
+      main {
+        padding: 15px;
       }
     }
   </style>
@@ -196,7 +242,6 @@
       document.getElementById(id).classList.add('active');
     }
 
-    // Mostrar "Inicio" al cargar
     document.addEventListener("DOMContentLoaded", () => {
       mostrarSeccion('inicio');
     });
