@@ -3,57 +3,203 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hábitat del Canario Coronado</title>
-  <link rel="stylesheet" href="style.css">
+  <title>El Canario Coronado</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background-color: #f8f3ec;
+      color: #3a2c1f;
+    }
+
+    header {
+      background: linear-gradient(90deg, #a66f33, #d9b77c);
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 1.6em;
+      font-weight: bold;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      background-color: #c29f68;
+      padding: 10px;
+    }
+
+    nav button {
+      background-color: #f1e2c3;
+      border: none;
+      margin: 5px;
+      padding: 10px 15px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+      color: #4b3b27;
+      transition: 0.3s;
+    }
+
+    nav button:hover {
+      background-color: #a66f33;
+      color: white;
+      transform: scale(1.05);
+    }
+
+    main {
+      padding: 20px;
+      animation: fadeIn 0.6s ease-in-out;
+    }
+
+    section {
+      display: none;
+      animation: fadeIn 0.6s ease-in-out;
+    }
+
+    section.active {
+      display: block;
+    }
+
+    h2 {
+      border-bottom: 2px solid #a66f33;
+      display: inline-block;
+      padding-bottom: 5px;
+      color: #5a3b1a;
+    }
+
+    img {
+      width: 100%;
+      max-width: 450px;
+      display: block;
+      margin: 15px auto;
+      border-radius: 15px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    audio {
+      display: block;
+      margin: 15px auto;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 📱 Responsivo */
+    @media (max-width: 768px) {
+      header {
+        font-size: 1.2em;
+      }
+
+      nav {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      nav button {
+        width: 80%;
+        font-size: 0.9em;
+        padding: 8px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <header class="sub-header">
-    <h1>🌳 Hábitat del Canario Coronado</h1>
-    <nav class="navbar">
-      <a href="index.html">Inicio</a>
-      <a href="habitat.html" class="active">Hábitat</a>
-      <a href="alimentacion.html">Alimentación</a>
-      <a href="adaptaciones.html">Adaptaciones</a>
-      <a href="canto.html">Canto</a>
-      <a href="dismorfismo.html">Dismorfismo</a>
-      <a href="curiosidades.html">Curiosidades</a>
-    </nav>
-  </header>
 
-  <section class="hero-section">
-    <div class="overlay"></div>
-    <img src="img/habitat.jpg" alt="Bosque seco tropical" class="hero-img">
-    <div class="hero-text">
-      <h2>El hogar natural del Canario Coronado</h2>
-      <p>Un entorno cálido, seco y lleno de vida.</p>
-    </div>
-  </section>
+  <header>🐦 El Canario Coronado (Sicalis flaveola)</header>
 
-  <main class="content">
-    <div class="text-block">
-      <h2>🌿 Donde vive</h2>
-      <p>El <b>canario coronado</b> habita principalmente en <b>bosques secos tropicales</b> y zonas semiáridas de Sudamérica. Se encuentra en Colombia, Venezuela, Brasil, Ecuador y Perú, adaptándose tanto a ambientes naturales como urbanos.</p>
-    </div>
+  <nav>
+    <button onclick="mostrarSeccion('inicio')">Inicio</button>
+    <button onclick="mostrarSeccion('habitat')">Hábitat</button>
+    <button onclick="mostrarSeccion('adaptaciones')">Adaptaciones</button>
+    <button onclick="mostrarSeccion('alimentacion')">Alimentación</button>
+    <button onclick="mostrarSeccion('dismorfismo')">Dismorfismo Sexual</button>
+    <button onclick="mostrarSeccion('depredadores')">Depredadores</button>
+    <button onclick="mostrarSeccion('canto')">Canto</button>
+    <button onclick="mostrarSeccion('curiosidades')">Curiosidades</button>
+  </nav>
 
-    <div class="image-gallery">
-      <img src="img/bosque1.jpg" alt="Paisaje de bosque seco tropical">
-      <img src="img/bosque2.jpg" alt="Zona árida con árboles dispersos">
-      <img src="img/bosque3.jpg" alt="Canario en su hábitat natural">
-    </div>
+  <main>
+    <section id="inicio" class="active">
+      <h2>Inicio</h2>
+      <p>El <b>canario coronado (Sicalis flaveola)</b> es un ave pequeña y vibrante que habita en regiones cálidas y secas, como el <b>bosque seco tropical</b>. Su plumaje amarillo brillante y su canto melodioso lo hacen una de las especies más queridas por observadores y amantes de las aves.</p>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/73/Sicalis_flaveola_-_Yellow_Canary.jpg" alt="Canario coronado">
+    </section>
 
-    <div class="text-block">
-      <h2>☀️ Condiciones del entorno</h2>
-      <p>Estos ecosistemas presentan una <b>estación seca prolongada</b> y una corta temporada lluviosa. Las plantas han desarrollado hojas pequeñas o caducas para evitar la pérdida de agua, y el canario coronado aprovecha esta vegetación para alimentarse y anidar.</p>
-    </div>
+    <section id="habitat">
+      <h2>Hábitat</h2>
+      <p>El canario coronado habita en regiones cálidas y semiáridas, principalmente en los <b>bosques secos tropicales</b>. Se le encuentra en zonas abiertas, cercanas a pastizales, matorrales y áreas rurales con árboles dispersos.</p>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Dry_forest_Colombia.jpg" alt="Bosque seco tropical">
+    </section>
 
-    <div class="highlight-box">
-      <h3>💡 Dato curioso</h3>
-      <p>Aunque el bosque seco tropical representa solo el <b>8% de la superficie de Colombia</b>, es uno de los ecosistemas más amenazados y con mayor biodiversidad en aves.</p>
-    </div>
+    <section id="adaptaciones">
+      <h2>Adaptaciones</h2>
+      <p>Ha desarrollado adaptaciones que le permiten sobrevivir en ambientes secos, como:</p>
+      <ul>
+        <li>Capacidad de conservar agua por largos períodos.</li>
+        <li>Vuelo corto y rápido para ahorrar energía.</li>
+        <li>Coloración que le sirve de camuflaje entre la vegetación amarillenta.</li>
+      </ul>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Sicalis_flaveola_male_2.jpg" alt="Adaptaciones del canario">
+    </section>
+
+    <section id="alimentacion">
+      <h2>Alimentación</h2>
+      <p>Su dieta se basa principalmente en <b>semillas, frutos pequeños e insectos</b>. Durante la época seca, aprovecha semillas resistentes y en temporada de lluvia, aumenta el consumo de insectos para obtener más proteínas.</p>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/f/f9/Sicalis_flaveola_eating.jpg" alt="Canario alimentándose">
+    </section>
+
+    <section id="dismorfismo">
+      <h2>Dismorfismo Sexual</h2>
+      <p>El dismorfismo sexual en el canario coronado es evidente:</p>
+      <ul>
+        <li>El <b>macho</b> posee un color amarillo intenso con una corona anaranjada brillante.</li>
+        <li>La <b>hembra</b> es de un tono más opaco, verdoso o amarillento pálido, lo que le permite camuflarse mejor en el entorno.</li>
+        <li>Los machos suelen tener un canto más elaborado, usado para atraer pareja.</li>
+      </ul>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/1/1f/Sicalis_flaveola_pair.jpg" alt="Macho y hembra de canario coronado">
+    </section>
+
+    <section id="depredadores">
+      <h2>Depredadores</h2>
+      <p>Entre sus principales depredadores se encuentran las <b>serpientes, gatos monteses y aves rapaces</b>. Para protegerse, suelen anidar en cavidades o construcciones humanas, aprovechando huecos y techos.</p>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/61/Tropical_dry_forest_predator.jpg" alt="Depredadores naturales">
+    </section>
+
+    <section id="canto">
+      <h2>Canto</h2>
+      <p>Su canto es <b>melodioso, vibrante y alegre</b>. Los machos lo utilizan para atraer pareja y marcar territorio. Su repertorio incluye trinos cortos y silbidos suaves.</p>
+      <audio controls>
+        <source src="audio/canto_canario.mp3" type="audio/mpeg">
+        Tu navegador no soporta el audio.
+      </audio>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/47/Sicalis_flaveola_-_Yellow_Canary_-_Argentina.jpg" alt="Canario cantando">
+    </section>
+
+    <section id="curiosidades">
+      <h2>Datos Curiosos</h2>
+      <ul>
+        <li>El canario coronado es una de las especies más populares en canciones y poesía latinoamericana.</li>
+        <li>Puede convivir con otras aves pequeñas si se le da suficiente espacio.</li>
+        <li>Durante el amanecer, su canto es más fuerte y variado.</li>
+      </ul>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/f/f4/Sicalis_flaveola_closeup.jpg" alt="Detalle del canario coronado">
+    </section>
   </main>
 
-  <footer>
-    <p>© 2025 Proyecto Educativo — Canario Coronado 🌿</p>
-  </footer>
+  <script>
+    function mostrarSeccion(id) {
+      const secciones = document.querySelectorAll('section');
+      secciones.forEach(sec => sec.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+
+    // Mostrar "Inicio" al cargar
+    document.addEventListener("DOMContentLoaded", () => {
+      mostrarSeccion('inicio');
+    });
+  </script>
 </body>
 </html>
