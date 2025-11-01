@@ -177,14 +177,47 @@
       padding: 20px;
     }
 
+    /* BOTÓN TOGGLE PARA MÓVIL */
+  .menu-toggle {
+    display: none; /* por defecto oculto */
+  }
+
+  @media (max-width: 768px) {
     .menu-toggle {
       display: block;
-      position: fixed; /* fijamos en la pantalla */
+      position: fixed;
       top: 15px;
       left: 15px;
-      z-index: 30;
+      z-index: 50;
+      background: rgba(0,0,0,0.6);
+      color: white;
+      font-size: 1.6rem;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: -250px; /* oculto por defecto */
+      width: 250px;
+      height: 100vh;
+      transition: left 0.3s ease;
+      z-index: 40;
+    }
+
+    nav.open {
+      left: 0; /* cuando se abra */
+    }
+
+    main {
+      margin-left: 0;
+      padding: 20px;
     }
   }
+
 
 
   </style>
