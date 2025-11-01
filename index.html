@@ -1,270 +1,209 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>El Canario Coronado</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canario Coronado</title>
   <style>
-    /* ---------- ESTILOS GENERALES ---------- */
     body {
-      font-family: 'Poppins', sans-serif;
       margin: 0;
-      background: linear-gradient(180deg, #f4f0e6 0%, #faf7f1 100%);
-      color: #3c2e1f;
-      overflow-x: hidden;
-      scroll-behavior: smooth;
-    }
-
-    header {
-      background: linear-gradient(90deg, #9c6b2c, #c69b56, #e8c78c);
-      color: white;
-      padding: 35px 15px;
-      text-align: center;
-      font-size: 1.9em;
-      font-weight: bold;
-      letter-spacing: 1.2px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      border-bottom: 3px solid rgba(255, 255, 255, 0.3);
-    }
-
-    /* ---------- MENÚ ---------- */
-    nav {
+      font-family: 'Poppins', sans-serif;
       display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 10px;
-      background-color: #d2b48c;
-      padding: 12px 0;
-      position: sticky;
-      top: 85px;
-      z-index: 900;
-      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
-      backdrop-filter: blur(3px);
+      min-height: 100vh;
+      background: linear-gradient(to right, #fefcf6, #faf5ec);
+      color: #333;
     }
 
-    nav button {
-      background-color: #fffaf2;
-      border: none;
-      border-radius: 30px;
-      padding: 10px 22px;
-      cursor: pointer;
-      color: #5a3b1a;
-      font-weight: 600;
-      font-size: 0.95em;
+    /* ===== Menú lateral ===== */
+    nav {
+      width: 250px;
+      background: #c2a878;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      padding: 20px 0;
+      box-shadow: 4px 0 8px rgba(0,0,0,0.1);
+      position: fixed;
+      height: 100vh;
       transition: all 0.3s ease;
-      box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
     }
 
-    nav button:hover {
-      background-color: #b97b2e;
+    nav h2 {
+      text-align: center;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      letter-spacing: 1px;
+    }
+
+    .menu-btn {
+      padding: 15px 20px;
+      border: none;
+      background: none;
       color: white;
-      transform: translateY(-2px) scale(1.06);
-      box-shadow: 0px 3px 10px rgba(185, 123, 46, 0.4);
+      text-align: left;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
     }
 
-    nav button.active {
-      background-color: #b97b2e;
-      color: white;
-      transform: scale(1.05);
-      box-shadow: 0px 4px 12px rgba(185, 123, 46, 0.45);
+    .menu-btn:hover, .menu-btn.active {
+      background: #8b6f47;
     }
 
-    /* ---------- CONTENIDO PRINCIPAL ---------- */
+    /* ===== Contenido ===== */
     main {
-      padding: 30px;
-      animation: fadeIn 0.6s ease-in-out;
-      max-width: 900px;
-      margin: auto;
+      flex: 1;
+      margin-left: 250px;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: margin-left 0.3s ease;
     }
 
     section {
       display: none;
-      animation: fadeIn 0.6s ease-in-out;
-      background: rgba(255, 255, 255, 0.85);
-      border-radius: 25px;
-      padding: 25px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-      margin-bottom: 30px;
-      backdrop-filter: blur(6px);
-      transition: all 0.4s ease;
+      max-width: 900px;
+      text-align: justify;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      animation: fadeIn 0.4s ease;
     }
 
     section.active {
       display: block;
-      transform: translateY(0);
-      opacity: 1;
     }
 
-    h2 {
-      border-left: 6px solid #b97b2e;
-      padding-left: 12px;
-      color: #654321;
-      font-size: 1.6em;
-      margin-top: 0;
-      margin-bottom: 15px;
+    section img {
+      max-width: 100%;
+      border-radius: 15px;
+      margin-top: 15px;
     }
 
-    p, ul {
-      line-height: 1.7;
-      font-size: 1.05em;
-      text-align: justify;
-    }
-
-    ul {
-      margin-left: 25px;
-    }
-
-    img {
-      width: 100%;
-      max-width: 450px;
-      display: block;
-      margin: 25px auto;
-      border-radius: 20px;
-      box-shadow: 0px 8px 18px rgba(0, 0, 0, 0.25);
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-    }
-
-    img:hover {
-      transform: scale(1.06);
-      box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.3);
-    }
-
-    audio {
-      display: block;
-      margin: 20px auto;
-      border-radius: 25px;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-    }
-
-    /* ---------- EFECTOS ---------- */
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {opacity: 0; transform: translateY(10px);}
+      to {opacity: 1; transform: translateY(0);}
     }
 
-    /* ---------- RESPONSIVO ---------- */
+    /* ===== Responsivo ===== */
     @media (max-width: 768px) {
-      header {
-        font-size: 1.4em;
-        padding: 22px 10px;
-      }
-
       nav {
-        flex-direction: column;
-        padding: 8px;
-        top: 75px;
+        position: absolute;
+        width: 200px;
+        left: -200px;
+        z-index: 10;
       }
 
-      nav button {
-        width: 90%;
-        font-size: 0.9em;
-        padding: 10px;
+      nav.open {
+        left: 0;
       }
 
       main {
-        padding: 15px;
+        margin-left: 0;
+        padding: 20px;
+      }
+
+      .toggle-menu {
+        position: fixed;
+        top: 15px;
+        left: 15px;
+        background: #8b6f47;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 10px 15px;
+        cursor: pointer;
+        z-index: 11;
       }
     }
   </style>
 </head>
 <body>
 
-  <header>🐦 El Canario Coronado (Sicalis flaveola)</header>
+  <button class="toggle-menu">☰</button>
 
-  <nav>
-    <button onclick="mostrarSeccion('inicio')" id="btn-inicio">Inicio</button>
-    <button onclick="mostrarSeccion('habitat')" id="btn-habitat">Hábitat</button>
-    <button onclick="mostrarSeccion('adaptaciones')" id="btn-adaptaciones">Adaptaciones</button>
-    <button onclick="mostrarSeccion('alimentacion')" id="btn-alimentacion">Alimentación</button>
-    <button onclick="mostrarSeccion('dismorfismo')" id="btn-dismorfismo">Dismorfismo Sexual</button>
-    <button onclick="mostrarSeccion('depredadores')" id="btn-depredadores">Depredadores</button>
-    <button onclick="mostrarSeccion('canto')" id="btn-canto">Canto</button>
-    <button onclick="mostrarSeccion('curiosidades')" id="btn-curiosidades">Curiosidades</button>
+  <nav id="menu">
+    <h2>Canario Coronado</h2>
+    <button class="menu-btn active" data-section="inicio">Inicio</button>
+    <button class="menu-btn" data-section="habitat">Hábitat</button>
+    <button class="menu-btn" data-section="alimentacion">Alimentación</button>
+    <button class="menu-btn" data-section="comportamiento">Comportamiento</button>
+    <button class="menu-btn" data-section="dismorfismo">Dismorfismo sexual</button>
   </nav>
 
   <main>
     <section id="inicio" class="active">
-      <h2>Inicio</h2>
-      <p>El <b>canario coronado (Sicalis flaveola)</b> es un ave pequeña y vibrante que habita en regiones cálidas y secas, como el <b>bosque seco tropical</b>. Su plumaje amarillo brillante y su canto melodioso lo hacen una de las especies más queridas por observadores y amantes de las aves.</p>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/7/73/Sicalis_flaveola_-_Yellow_Canary.jpg" alt="Canario coronado">
+      <h1>El Canario Coronado</h1>
+      <p>
+        El canario coronado (<em>Serinus canaria</em>) es un ave nativa de regiones semiáridas,
+        adaptada a ambientes como el bosque seco tropical. Su colorido plumaje y su canto melódico
+        lo convierten en una especie muy apreciada tanto por científicos como por observadores de aves.
+      </p>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Serinus_canaria_-Canary_Islands-8.jpg" alt="Canario Coronado">
     </section>
 
     <section id="habitat">
-      <h2>Hábitat</h2>
-      <p>El canario coronado habita en regiones cálidas y semiáridas, principalmente en los <b>bosques secos tropicales</b>. Se le encuentra en zonas abiertas, cercanas a pastizales, matorrales y áreas rurales con árboles dispersos.</p>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Dry_forest_Colombia.jpg" alt="Bosque seco tropical">
-    </section>
-
-    <section id="adaptaciones">
-      <h2>Adaptaciones</h2>
-      <p>Ha desarrollado adaptaciones que le permiten sobrevivir en ambientes secos, como:</p>
-      <ul>
-        <li>Capacidad de conservar agua por largos períodos.</li>
-        <li>Vuelo corto y rápido para ahorrar energía.</li>
-        <li>Coloración que le sirve de camuflaje entre la vegetación amarillenta.</li>
-      </ul>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Sicalis_flaveola_male_2.jpg" alt="Adaptaciones del canario">
+      <h1>Hábitat</h1>
+      <p>
+        Habita principalmente en zonas de bosque seco tropical, donde predomina la vegetación dispersa
+        y los árboles como el trupillo, el dividivi y el guayacán. Suele construir sus nidos en ramas altas
+        para proteger a sus crías de depredadores.
+      </p>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/32/Tropical_dry_forest.jpg" alt="Bosque seco tropical">
     </section>
 
     <section id="alimentacion">
-      <h2>Alimentación</h2>
-      <p>Su dieta se basa principalmente en <b>semillas, frutos pequeños e insectos</b>. Durante la época seca, aprovecha semillas resistentes y en temporada de lluvia, aumenta el consumo de insectos para obtener más proteínas.</p>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/f/f9/Sicalis_flaveola_eating.jpg" alt="Canario alimentándose">
+      <h1>Alimentación</h1>
+      <p>
+        Su dieta se compone de semillas, frutos secos y pequeños insectos. Durante la temporada seca,
+        aprovecha los recursos del bosque almacenando semillas que encuentra en el suelo y en plantas espinosas.
+      </p>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/af/Canary_eating_seeds.jpg" alt="Canario alimentándose">
+    </section>
+
+    <section id="comportamiento">
+      <h1>Comportamiento</h1>
+      <p>
+        Es un ave muy social y activa, reconocida por su canto melodioso. Durante el amanecer, los machos
+        suelen cantar para marcar su territorio y atraer a las hembras. También realiza vuelos cortos y rápidos
+        entre árboles cercanos.
+      </p>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/45/Serinus_canaria_-singing-8a.jpg" alt="Canario cantando">
     </section>
 
     <section id="dismorfismo">
-      <h2>Dismorfismo Sexual</h2>
-      <p>El dismorfismo sexual en el canario coronado es evidente:</p>
-      <ul>
-        <li>El <b>macho</b> posee un color amarillo intenso con una corona anaranjada brillante.</li>
-        <li>La <b>hembra</b> es de un tono más opaco, verdoso o amarillento pálido, lo que le permite camuflarse mejor en el entorno.</li>
-        <li>Los machos suelen tener un canto más elaborado, usado para atraer pareja.</li>
-      </ul>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/1/1f/Sicalis_flaveola_pair.jpg" alt="Macho y hembra de canario coronado">
-    </section>
-
-    <section id="depredadores">
-      <h2>Depredadores</h2>
-      <p>Entre sus principales depredadores se encuentran las <b>serpientes, gatos monteses y aves rapaces</b>. Para protegerse, suelen anidar en cavidades o construcciones humanas, aprovechando huecos y techos.</p>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/61/Tropical_dry_forest_predator.jpg" alt="Depredadores naturales">
-    </section>
-
-    <section id="canto">
-      <h2>Canto</h2>
-      <p>Su canto es <b>melodioso, vibrante y alegre</b>. Los machos lo utilizan para atraer pareja y marcar territorio. Su repertorio incluye trinos cortos y silbidos suaves.</p>
-      <audio controls>
-        <source src="audio/canto_canario.mp3" type="audio/mpeg">
-        Tu navegador no soporta el audio.
-      </audio>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/4/47/Sicalis_flaveola_-_Yellow_Canary_-_Argentina.jpg" alt="Canario cantando">
-    </section>
-
-    <section id="curiosidades">
-      <h2>Datos Curiosos</h2>
-      <ul>
-        <li>El canario coronado es una de las especies más populares en canciones y poesía latinoamericana.</li>
-        <li>Puede convivir con otras aves pequeñas si se le da suficiente espacio.</li>
-        <li>Durante el amanecer, su canto es más fuerte y variado.</li>
-      </ul>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/f/f4/Sicalis_flaveola_closeup.jpg" alt="Detalle del canario coronado">
+      <h1>Dismorfismo sexual</h1>
+      <p>
+        El canario coronado presenta diferencias notables entre machos y hembras.
+        Los machos poseen un plumaje más brillante y una corona amarilla más intensa,
+        mientras que las hembras muestran tonos más apagados y discretos.
+        Además, el canto del macho es más elaborado, utilizado principalmente para atraer pareja y defender su territorio.
+      </p>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/d/de/Canary_male_female.jpg" alt="Dismorfismo sexual en canarios">
     </section>
   </main>
 
   <script>
-    function mostrarSeccion(id) {
-      const secciones = document.querySelectorAll('section');
-      const botones = document.querySelectorAll('nav button');
-      secciones.forEach(sec => sec.classList.remove('active'));
-      botones.forEach(btn => btn.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-      document.getElementById('btn-' + id).classList.add('active');
-    }
+    const buttons = document.querySelectorAll('.menu-btn');
+    const sections = document.querySelectorAll('section');
+    const nav = document.querySelector('nav');
+    const toggleBtn = document.querySelector('.toggle-menu');
 
-    document.addEventListener("DOMContentLoaded", () => {
-      mostrarSeccion('inicio');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        buttons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        sections.forEach(s => s.classList.remove('active'));
+        document.getElementById(btn.dataset.section).classList.add('active');
+        nav.classList.remove('open');
+      });
+    });
+
+    toggleBtn.addEventListener('click', () => {
+      nav.classList.toggle('open');
     });
   </script>
 </body>
