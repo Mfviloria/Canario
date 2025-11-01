@@ -1,343 +1,37 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>El Canario Coronado</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
-
-body {
-  font-family: 'Poppins', sans-serif;
-  background-color: #faf7f0;
-  color: #3b2f2f;
-  margin: 0;
-  overflow-x: hidden;
-}
-
-/* HEADER */
-header {
-  background: linear-gradient(135deg, #d4a373, #8b5e34);
-  color: #fff;
-  text-align: center;
-  padding: 80px 20px;
-  position: relative;
-}
-
-header h1 {
-  font-size: 3em;
-  margin: 0;
-  animation: fadeIn 1.5s ease;
-}
-
-header p {
-  font-size: 1.2em;
-  color: #fff9e6;
-  animation: fadeIn 2s ease;
-}
-
-/* NAVBAR */
-nav {
-  background-color: #fefae0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  position: sticky;
-  top: 0;
-  z-index: 10;
-}
-
-.nav-list {
-  display: flex;
-  list-style: none;
-  gap: 20px;
-}
-
-.nav-list li a {
-  color: #8b5e34;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
-
-.nav-list li a:hover {
-  color: #d4a373;
-  transform: scale(1.05);
-}
-
-.menu-toggle {
-  display: none;
-  flex-direction: column;
-  cursor: pointer;
-  gap: 5px;
-}
-
-.menu-toggle span {
-  width: 25px;
-  height: 3px;
-  background: #8b5e34;
-  border-radius: 2px;
-  transition: all 0.3s ease;
-}
-
-/* SECCIONES */
-section {
-  max-width: 1100px;
-  margin: 60px auto;
-  padding: 30px;
-  border-radius: 20px;
-  background: #fff;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-  overflow: hidden;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-section:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
-}
-
-section h2 {
-  color: #8b5e34;
-  margin-bottom: 15px;
-}
-
-section p, li {
-  font-size: 1.1em;
-  line-height: 1.8;
-}
-
-.info-img {
-  text-align: center;
-  margin-top: 25px;
-}
-
-.info-img img {
-  width: 100%;
-  max-width: 500px;
-  border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-  transition: transform 0.3s;
-}
-
-.info-img img:hover { transform: scale(1.05); }
-
-/* NUEVO ESTILO DE BLOQUES ALTERNADOS */
-.bloque {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 30px;
-}
-
-.bloque:nth-child(even) { flex-direction: row-reverse; }
-
-.bloque img {
-  flex: 1;
-  width: 100%;
-  border-radius: 15px;
-}
-
-.bloque div {
-  flex: 1;
-  min-width: 300px;
-}
-
-/* SECCIÓN INTERACTIVA */
-.interactivo {
-  background: linear-gradient(180deg, #fefae0, #d4a373);
-  padding: 50px 20px;
-  text-align: center;
-  border-radius: 20px;
-  color: #4a3b26;
-}
-
-.interactivo img {
-  width: 400px;
-  max-width: 90%;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: transform 0.3s, filter 0.3s;
-}
-
-.interactivo img:hover {
-  transform: scale(1.05);
-  filter: drop-shadow(0 0 10px #fff);
-}
-
-#datoMostrado {
-  background-color: #8b5e34;
-  color: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  margin-top: 25px;
-  font-weight: bold;
-}
-
-/* FOOTER */
-footer {
-  background-color: #8b5e34;
-  color: #fefae0;
-  text-align: center;
-  padding: 30px;
-  font-size: 1em;
-  border-top: 4px solid #d4a373;
-}
-
-/* RESPONSIVE */
-@media (max-width: 768px) {
-  header h1 { font-size: 2.2em; }
-  .bloque { flex-direction: column; }
-  .menu-toggle { display: flex; }
-  .nav-list {
-    position: fixed;
-    top: 60px;
-    left: 0;
-    width: 100%;
-    flex-direction: column;
-    background: linear-gradient(180deg, #fefae0, #d4a373);
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.5s ease, opacity 0.5s ease;
-    opacity: 0;
-  }
-  .nav-list.active { max-height: 500px; opacity: 1; }
-  .nav-list li { text-align: center; margin: 15px 0; }
-}
-
-/* Animación */
-@keyframes fadeIn {
-  from {opacity: 0; transform: translateY(20px);}
-  to {opacity: 1; transform: translateY(0);}
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canario Coronado - Inicio</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <header>
+    <h1>🐦 Canario Coronado</h1>
+    <p><i>Sicalis flaveola</i> — una joya del bosque seco tropical</p>
+    <nav class="navbar">
+      <a href="index.html" class="active">Inicio</a>
+      <a href="habitat.html">Hábitat</a>
+      <a href="alimentacion.html">Alimentación</a>
+      <a href="adaptaciones.html">Adaptaciones</a>
+      <a href="canto.html">Canto</a>
+      <a href="dismorfismo.html">Dismorfismo Sexual</a>
+      <a href="curiosidades.html">Curiosidades</a>
+    </nav>
+  </header>
 
-<header>
-  <h1>El Canario Coronado</h1>
-  <p><i>(Sicalis flaveola)</i> — Un tesoro dorado del bosque seco tropical</p>
-</header>
-
-<nav>
-  <div class="menu-toggle" id="mobile-menu"><span></span><span></span><span></span></div>
-  <ul class="nav-list">
-    <li><a href="#habitat">Hábitat</a></li>
-    <li><a href="#alimentacion">Alimentación</a></li>
-    <li><a href="#adaptaciones">Adaptaciones</a></li>
-    <li><a href="#dismorfismo">Dismorfismo Sexual</a></li>
-    <li><a href="#depredadores">Depredadores</a></li>
-    <li><a href="#canto">Canto</a></li>
-    <li><a href="#explora">Explora</a></li>
-    <li><a href="#curiosidades">Curiosidades</a></li>
-    <li><a href="#conservacion">Conservación</a></li>
-  </ul>
-</nav>
-
-<div class="contenedor">
-
-  <section id="habitat" class="bloque">
-    <img src="habitat.jpg" alt="Canario coronado en su hábitat">
-    <div>
-      <h2>🌾 Hábitat</h2>
-      <p>El canario coronado habita principalmente en los <b>bosques secos tropicales</b> de América del Sur, desde Colombia hasta Argentina...</p>
+  <section class="intro">
+    <img src="img/canario1.jpg" alt="Canario Coronado" class="main-img">
+    <div class="info">
+      <h2>Un habitante del bosque seco tropical</h2>
+      <p>El <b>canario coronado</b> es una de las aves más representativas del bosque seco tropical. Su canto alegre y su color amarillo brillante lo convierten en un símbolo de energía y vitalidad.</p>
+      <p>Con su adaptabilidad al calor y escasez de agua, este canario es un ejemplo de resiliencia en ecosistemas amenazados.</p>
     </div>
   </section>
 
-  <section id="alimentacion" class="bloque">
-    <img src="comiendo.jpg" alt="Canario coronado alimentándose">
-    <div>
-      <h2>🌻 Alimentación</h2>
-      <p>Su dieta es principalmente <b>granívora</b>...</p>
-    </div>
-  </section>
-
-  <section id="adaptaciones" class="bloque">
-    <img src="bird.jpg" alt="Adaptaciones del canario coronado">
-    <div>
-      <h2>🌞 Adaptaciones al hábitat</h2>
-      <p>El canario coronado posee un plumaje que refleja los tonos del sol...</p>
-    </div>
-  </section>
-
-  <section id="dismorfismo" class="bloque">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f4/Sicalis_flaveola_male_and_female.jpg" alt="Macho y hembra de canario coronado">
-    <div>
-      <h2>🪶 Dismorfismo Sexual</h2>
-      <p>El canario coronado presenta un marcado <b>dismorfismo sexual</b>. Los <b>machos</b> exhiben un brillante color amarillo con una corona dorada intensa, mientras que las <b>hembras</b> tienen tonos más apagados, verde-oliva o amarillentos, lo que les ayuda a camuflarse en la vegetación seca.  
-      Este contraste no solo tiene fines estéticos, sino que cumple una función ecológica: el macho atrae pareja mediante su plumaje y canto, mientras que la hembra se protege mejor durante la incubación.</p>
-    </div>
-  </section>
-
-  <section id="depredadores" class="bloque">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/e/ea/Falco_sparverius2.jpg" alt="Depredadores">
-    <div>
-      <h2>🦅 Depredadores</h2>
-      <p>Entre sus principales enemigos naturales están los <b>halcones, serpientes y pequeños mamíferos</b>...</p>
-    </div>
-  </section>
-
-  <section id="canto" class="bloque">
-    <img src="sing.jpg" alt="Canario cantando">
-    <div>
-      <h2>🎶 Canto</h2>
-      <p>Su canto es <b>melodioso, vibrante y alegre</b>...</p>
-      <audio controls><source src="Canto.mp3" type="audio/mpeg">Tu navegador no soporta el audio.</audio>
-    </div>
-  </section>
-
-  <section id="explora" class="interactivo">
-    <h2>🕊️ Explora el Canario Coronado</h2>
-    <p>Haz clic en las partes del canario para descubrir datos curiosos:</p>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/8/87/Sicalis_flaveola_-_Brazil_Side.jpg" usemap="#mapacanario">
-    <map name="mapacanario">
-      <area shape="circle" coords="160,90,40" onclick="mostrarDato('Su corona dorada refleja la luz del sol y le da su nombre característico.')">
-      <area shape="rect" coords="130,150,270,230" onclick="mostrarDato('Sus plumas le permiten soportar el calor y conservar la humedad corporal.')">
-      <area shape="circle" coords="250,320,30" onclick="mostrarDato('Sus patas se adaptan a ramas finas, permitiéndole posarse con firmeza en arbustos secos.')">
-    </map>
-    <div id="datoMostrado">✨ Haz clic en una parte del canario para descubrir un dato curioso ✨</div>
-  </section>
-
-  <section id="curiosidades">
-    <h2>🌿 Datos Curiosos</h2>
-    <ul>
-      <li>El macho canta con mayor intensidad...</li>
-      <li>Su color amarillo proviene de los pigmentos...</li>
-      <li>Construye su nido con pasto seco...</li>
-      <li>En algunos países se asocia con la buena suerte...</li>
-      <li>Pueden vivir entre 8 y 10 años en libertad.</li>
-    </ul>
-  </section>
-
-  <section id="conservacion" class="bloque">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Bosque_seco_tropical_Colombia.jpg">
-    <div>
-      <h2>🌎 Conservación y Amenazas</h2>
-      <p>Aunque el canario coronado no se considera en peligro...</p>
-    </div>
-  </section>
-</div>
-
-<footer>
-© 2025 <span>Aventuras del Bosque Seco</span> 🌻 | Diseñado por Mafe Viloria
-</footer>
-
-<script>
-function mostrarDato(texto){
-  const dato = document.getElementById('datoMostrado');
-  dato.innerText = texto;
-  dato.style.animation = 'none';
-  setTimeout(() => dato.style.animation = 'fadeIn 0.8s ease', 10);
-}
-
-const mobileMenu = document.getElementById('mobile-menu');
-const navList = document.querySelector('.nav-list');
-mobileMenu.addEventListener('click', () => {
-  navList.classList.toggle('active');
-  mobileMenu.classList.toggle('open');
-});
-</script>
+  <footer>
+    <p>© 2025 Proyecto Educativo — Canario Coronado 🌿</p>
+  </footer>
 </body>
 </html>
