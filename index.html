@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Canario Coronado</title>
@@ -207,7 +208,9 @@
     <button class="menu-btn" data-section="alimentacion"><i>🌾</i><span>Alimentación</span></button>
     <button class="menu-btn" data-section="comportamiento"><i>🎶</i><span>Comportamiento</span></button>
     <button class="menu-btn" data-section="dismorfismo"><i>🪶</i><span>Dismorfismo</span></button>
+    <button class="menu-btn" data-section="3d"><i>🎵</i><span>Modelo 3D</span></button>
     <button class="menu-btn" data-section="creditos"><span>Créditos</span></button>
+    <button class="menu-btn" data-section="bibliografia"><span>Bibliografía</span></button>
   </nav>
   <main>
   
@@ -228,6 +231,9 @@
       Además, es una especie muy resistente, capaz de adaptarse a jardines, huertos y zonas semiurbanas,
       siempre que haya suficiente vegetación y disponibilidad de agua. Se ha utilizado como especie modelo
       para estudios de comportamiento, genética y canto de aves.
+    </p>
+    <p>
+      Sicalis flaveola es una especie de ave paseriforme de la familia Thraupidae perteneciente al género Sicalis. Es ampliamente difundido por gran parte de Sudamérica (excepto en la cuenca amazónica, en la Patagonia y en altitudes andinas), y debido a la preferencia como ave de jaula, ha sido introducido en diversos otros países.
     </p>
   
 </section>
@@ -285,22 +291,29 @@
   </div>
 
   <p>
-    Es un ave muy social y activa, reconocida por su canto melodioso. Durante el amanecer, los machos
-    suelen cantar para marcar su territorio y atraer a las hembras. También realiza vuelos cortos y rápidos
-    entre árboles cercanos.
+   Anida en cavidades y a veces usa nidos abandonados por el hornero (Furnarius rufus). Tiene un repetitivo reclamo, que combinado con su apariencia lo ha hecho una especie muy cotizada como ave de jaula.
   </p>
   <p>
-    Los canarios coronados muestran curiosidad y aprendizaje rápido, interactuando con su entorno.
-    Durante la época de reproducción, los machos son más territoriales y pueden enfrentarse a otros machos
-    para defender su espacio. Su comunicación incluye cantos complejos y llamadas suaves para interactuar
-    con el grupo.
+
+    Cuando están asustados pegan sus plumas y estiran el cuerpo y lo acompañan con sonidos alarmantes, generalmente reaccionan así ante un conflicto con un macho más fuerte o una amenaza como un gato o un ave rapaz.
   </p>
   <p>
-    También se ha observado que estos canarios participan en juegos sociales, como persecuciones cortas
-    y acicalamiento mutuo, lo que fortalece los lazos dentro del grupo y mejora la supervivencia colectiva.
-    Son aves inteligentes que pueden reconocer y recordar lugares con buena comida y refugio.
+    Sus huevos son pequeños, como almendras, de color blanco puro y de cáscara delgada pero resistente. Alimentan a sus crías de pico a pico como hacen la mayoría de aves, las crías persiguen a sus padres con un continuo chirrido que no pasa desapercibido por su intensidad. La hembra construye el nido sola y el macho sólo la observa al mismo tiempo que canta y va y viene hasta que su nido está totalmente listo, si no es que han tomado otro abandonado. En áreas urbanas pueden ser bastante confiados y poner sus huevos incluso en macetas o cavidades en edificios.
   </p>
-  
+  <subsection>
+    <h2>Canto</h2>
+
+    <p>
+      El canto es adorable y placentero. Las notas son suficientemente espaciadas para darlas calmamente, de naturaleza agradablemente silbadas, por ejemplo: «zuhit, chiu, tzuup, chiu, pipa piu, tzuup, cheu...»; existe mucha variación pero el canto es siempre agradable hecho de notas de sonido dulce, algunas veces unas pocas notas más ásperas, y, diferente de otros chirigües, no sugieren un gorjeo o parloteo. El llamado típico es un «whip» ascendiente, también un corto «tuup».
+    </p>
+    <div style="margin-top: 30px;">
+      <p style="color: #4a4a4a; font-size: 1.1em;">Canto del canario:</p>
+      <audio controls>
+        <source src="Canto.mp3" type="audio/mpeg">
+        Tu navegador no soporta la reproducción de audio.
+      </audio>
+    </div>
+    </subsection>
   <img src="bird.jpg" alt="Canario cantando">
 </section>
 
@@ -328,6 +341,28 @@
   <img src="dsmsex.png" alt="Dismorfismo sexual en canarios">
   <img src="graph.jpg" alt="Dismorfismo sexual en canarios">
 </section>
+
+<section id="3d" style="text-align:center; padding:40px;">
+  <h2 style="color:#d35400;">🦜 Modelo 3D del Canario Coronado</h2>
+
+  <model-viewer src="CC.glb" 
+                alt="Modelo 3D del Canario Coronado" 
+                camera-controls 
+                auto-rotate 
+                background-color="#fff5e6"
+                style="width:400px; height:400px; border-radius:20px; box-shadow:0 4px 12px rgba(0,0,0,0.2);">
+  </model-viewer>
+
+  <model-viewer src="CCFLY.glb" 
+                alt="Canario Coronado volando" 
+                camera-controls 
+                auto-rotate 
+                background-color="#fff5e6"
+                style="width:400px; height:400px; border-radius:20px; box-shadow:0 4px 12px rgba(0,0,0,0.2);">
+  </model-viewer>
+</section>
+
+
 <section id="creditos" style="text-align: center; padding: 40px">
   <h1 style="color: #d35400; font-size: 2.2em; margin-bottom: 10px;">Créditos</h1>
   <p style="font-size: 1.2em; margin-bottom: 20px;">Página web creada por:</p>
@@ -339,6 +374,13 @@
   <p style="margin-top: 25px; font-weight: bold;">Curso de Biología</p>
   <p>Profesor: Rafik Neme Garrido</p>
   <p style="margin-top: 15px; font-style: italic;">2025</p>
+</section>
+<section id="bibliografia" style="text-align: center; padding: 40px">
+  <h1 style="color: #d35400; font-size: 2.2em; margin-bottom: 10px;">Bibliografía</h1>
+  <p style="font-size: 1.2em; margin-bottom: 20px;">La información de esta página se obtuvo de las siguientes fuentes:</p>
+  <div style="font-size: 1.1em; color: #6b6b6b; line-height: 1.8;">
+    <a href="https://colombia.inaturalist.org/taxa/9864-Sicalis-flaveola" target="_blank" style="color: #e67e22; text-decoration: none;">NaturalistaCO</a><br>
+  </div>
 </section>
 
 
